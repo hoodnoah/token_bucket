@@ -5,13 +5,13 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hoodnoah/tokenbucket"
+	tb "github.com/hoodnoah/token_bucket"
 )
 
 // TestAllow verifies that Allow() returns false before a refill, and true afterwards
 func TestAllow(t *testing.T) {
 	// Create a bucket with a capacity of 2 and a refill rate of 10ms.
-	bucket := tokenbucket.NewTokenBucket(2, 10*time.Millisecond)
+	bucket := tb.NewTokenBucket(2, 10*time.Millisecond)
 
 	// The bucket should start empty
 	if bucket.Allow() {
@@ -30,7 +30,7 @@ func TestAllow(t *testing.T) {
 // TestWait verifies that Wait() blocks until a token is available
 func TestWait(t *testing.T) {
 	// Create a bucket with a capacity of 1 and a refill rate of 10ms.
-	bucket := tokenbucket.NewTokenBucket(1, 10*time.Millisecond)
+	bucket := tb.NewTokenBucket(1, 10*time.Millisecond)
 
 	start := time.Now()
 	done := make(chan struct{})
@@ -56,14 +56,14 @@ func TestWait(t *testing.T) {
 // TestConcurrentAccess simulates concurrent calls to Allow() to verify the bucket does not allow more than capacity
 func TestConcurrentAccess(t *testing.T) {
 	// create a bucket
-	bucket := tokenbucket.NewTokenBucket(2, 10*time.Millisecond)
+	bucket := tb.NewTokenBucket(2, 10*time.Millisecond)
 
 	// Wait for token to fill
 	time.Sleep(30 * time.Millisecond)
 
 	var successes int
 
-	for _ = range 10 {
+	for range 10 {
 		if bucket.Allow() {
 			successes++
 		}
@@ -77,7 +77,7 @@ func TestConcurrentAccess(t *testing.T) {
 // TestIntegration simulates multiple goroutines using Wait() and ensures the expected timing behavior.
 func TestIntegration(t *testing.T) {
 	// Create a bucket with a capacity of 2 and a refill interval of 50ms.
-	bucket := tokenbucket.NewTokenBucket(2, 50*time.Millisecond)
+	bucket := tb.NewTokenBucket(2, 50*time.Millisecond)
 
 	// We will start 3 goroutines that each wait for a token.
 	var wg sync.WaitGroup
