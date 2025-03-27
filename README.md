@@ -2,6 +2,7 @@
 
 [![Build Status](https://github.com/hoodnoah/token_bucket/workflows/CI/badge.svg)](https://github.com/hoodnoah/token_bucket/actions)
 [![codecov](https://codecov.io/gh/hoodnoah/token_bucket/branch/main/graph/badge.svg)](https://codecov.io/gh/hoodnoah/token_bucket)
+[![Go Report Card](https://goreportcard.com/badge/github.com/hoodnoah/token_bucket)](https://goreportcard.com/report/github.com/hoodnoah/token_bucket)
 
 **TokenBucket** is a simple Go library that implements a token bucket rate limiter. It is designed to help you control the rate of operations (such as external API calls or concurrent workers) by limiting the number of tokens available for execution. The bucket refills tokens at a fixed interval, allowing you to maximize throughput while adhering to rate limits.
 
