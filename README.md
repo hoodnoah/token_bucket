@@ -1,5 +1,8 @@
 # TokenBucket
 
+[![CI](https://github.com/hoodnoah/token_bucket/actions/workflows/ci.yml/badge.svg)](https://github.com/hoodnoah/token_bucket/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/hoodnoah/token_bucket/branch/main/graph/badge.svg)](https://codecov.io/gh/hoodnoah/token_bucket)
+
 **TokenBucket** is a simple Go library that implements a token bucket rate limiter. It is designed to help you control the rate of operations (such as external API calls or concurrent workers) by limiting the number of tokens available for execution. The bucket refills tokens at a fixed interval, allowing you to maximize throughput while adhering to rate limits.
 
 ## Features
